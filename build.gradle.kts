@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("org.springframework.boot") version "2.2.2.RELEASE"
@@ -52,6 +53,21 @@ tasks {
 
     withType<Test> {
         useJUnitPlatform()
+    }
+
+    register("bootRunDev") {
+        dependsOn(setOf("build"))
+
+        group = "application"
+        description = "Runs project dev profile"
+
+        doFirst {
+            bootRun.configure {
+                systemProperty("spring.profiles.active", "dev")
+            }
+        }
+
+        finalizedBy("bootRun")
     }
 }
 
