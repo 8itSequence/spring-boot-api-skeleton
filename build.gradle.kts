@@ -31,10 +31,15 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
 
+    implementation(springBootStarter("data-jpa"))
     implementation(springBootStarter("web"))
+
+    implementation("org.flywaydb:flyway-core")
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:2.5.3")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    implementation("com.github.javafaker:javafaker:1.0.1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
