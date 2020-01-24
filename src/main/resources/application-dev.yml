@@ -1,2 +1,30 @@
 server:
   port: 9090
+
+spring:
+  flyway:
+    enabled: true
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Europe/Berlin
+        dialect: org.hibernate.dialect.MariaDB103Dialect
+        format_sql: true
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: jdbc:mariadb://${DB_HOST}:${DB_PORT}/spring_boot_api_skeleton?useMysqlMetadata=true&createDatabaseIfNotExist=true&useLegacyDatetimeCode=false
+    driver-class-name: org.mariadb.jdbc.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+
+app:
+  db:
+    populate:
+      allowed: false
